@@ -1,0 +1,42 @@
+:root {
+    --primaryColor: #e0e0e0;
+    --secondaryColor: #ffa742;
+    --font: 'Poppins';
+}
+
+body {
+    background-color: var(--primaryColor);
+}
+
+.searchContainer {
+    display: flex;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50vw;
+    top: 20vh;
+    width: 65vw;
+    height: 8vh;
+}
+
+#search {
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    font-family: var(--font);
+    font-size: 24px;
+}
+
+.submit {
+    flex-grow: 0.5;
+    border: none;
+    background-color: var(--secondaryColor);
+    color: white;
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.submit:active {
+    background-color: #FF9C2B;
+}
