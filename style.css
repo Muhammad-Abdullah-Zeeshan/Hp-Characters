@@ -13,7 +13,7 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50vw;
-    top: 20vh;
+    top: 25vh;
     width: 65vw;
     height: 8vh;
 }
@@ -39,4 +39,17 @@ body {
 
 .submit:active {
     background-color: #FF9C2B;
+}
+
+.resultContainer {
+    border: 2px solid black;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50vw;
+    top: 80vh;
+    width: 90vw;
+    height: 70vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
