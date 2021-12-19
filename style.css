@@ -41,15 +41,42 @@ body {
     background-color: #FF9C2B;
 }
 
-.resultContainer {
-    border: 2px solid black;
+.mainContainer {;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     left: 50vw;
-    top: 80vh;
-    width: 90vw;
-    height: 70vh;
+    top: 95vh;
+    width: 65vw;
+    height: 120vh;
+}
+
+.mainContainer span {
+    font-family: var(--font);
+    font-weight: bold;
+    font-size: 40px;
+    padding: 25px;
+}
+
+.childContainer {
+    width: 62vw;
+    height: 100vh;
+    margin: auto;
     display: flex;
-    justify-content: space-around;
+    gap: 20px;
     flex-wrap: wrap;
+    overflow-y: auto;
+    align-content: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.characterCard {
+    width: 250px;
+    height: 400px;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow:  5px 5px 75px #b5b5b5,
+             -5px -5px 75px #ffffff;
 }
