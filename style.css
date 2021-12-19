@@ -41,7 +41,7 @@ body {
     background-color: #FF9C2B;
 }
 
-.mainContainer {;
+.mainContainer {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50vw;
