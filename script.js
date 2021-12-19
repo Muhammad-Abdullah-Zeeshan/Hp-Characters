@@ -13,12 +13,13 @@ async function fetchData() {
 
 }
 
-searchBtn.addEventListener('click', ()=> {
+searchBtn.addEventListener('click', () => {
     if (inputContainer.value == '') {
         
     }
 
     else {
+        total = 0;
         returnFilteredData();
     }
 });
@@ -27,10 +28,33 @@ searchBtn.addEventListener('click', ()=> {
 function returnFilteredData() {
     term = inputContainer.value;
     term = term.toLowerCase()
-    data.forEach((person)=> {
+    filteredData.forEach(()=>{
+        if (document.querySelector('.characterCard') != null) {
+            document.querySelector('.characterCard').remove();
+        }
+    })
+    
+    data.forEach((person) => {
+        
         if (person.name.toLowerCase().includes(term)) {
             console.log(person.name);
+            filteredData.push(person);
             total += 1;
+
+            document.querySelector('.resultNum').innerHTML = 'Results: ' + total;
+
+            var div = document.createElement('div');
+            div.setAttribute('class', 'characterCard');
+            document.querySelector('.childContainer').appendChild(div);
+            
+            var img = document.createElement('img');
+            img.src = person.image;
+            img.setAttribute('alt', person.name + "'s image");
+            div.appendChild(img);
+        }
+
+        else{
+            document.querySelector('.resultNum').innerHTML = 'Results: ' + total;
         }
     })
 
