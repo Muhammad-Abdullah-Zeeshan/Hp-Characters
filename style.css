@@ -6,16 +6,16 @@
 
 body {
     background-color: var(--primaryColor);
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .searchContainer {
     display: flex;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50vw;
-    top: 25vh;
+    margin: auto;
     width: 65vw;
     height: 8vh;
+    transform: translate(0, 25vh);
 }
 
 #search {
@@ -35,6 +35,7 @@ body {
     font-family: var(--font);
     font-size: 20px;
     font-weight: 500;
+    border-radius: 5px;
 }
 
 .submit:active {
@@ -42,12 +43,13 @@ body {
 }
 
 .mainContainer {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50vw;
-    top: 95vh;
+    display: flex;
+    flex-direction: column;
     width: 65vw;
-    height: 120vh;
+    margin: auto;
+    transform: translate(0, 35vh);
+    padding-bottom: 100px;
+    
 }
 
 .mainContainer span {
@@ -58,17 +60,11 @@ body {
 }
 
 .childContainer {
-    width: 62vw;
-    height: 100vh;
-    margin: auto;
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
-    overflow-y: auto;
     align-content: flex-start;
-    padding-top: 20px;
-    padding-bottom: 20px;
-
+    gap: 20px;
+    width: 65vw;
 }
 
 .characterCard {
@@ -82,6 +78,27 @@ body {
 }
 
 .characterCard img {
-    width: 250px;
-    height: 350px;
+    width: 214.2px;
+    height: 300px;
+    margin-left: 7.5%;
+}
+
+.mainContainer button {
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+    font-size: 32px;
+    font-family: var(--font);
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    transform: translate(50%, 40px);
+    width: 50%;
+}
+
+.mainContainer button:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.mainContainer button:active {
+    background-color: #FF9C2B;
 }
