@@ -1,107 +1,87 @@
-const url = 'http://hp-api.herokuapp.com/api/characters';
+const API_KEY = 'http://hp-api.herokuapp.com/api/characters';
+const childDiv = document.querySelector('.childContainer');
+const mainDiv = document.querySelector('.mainContainer');
 const searchBtn = document.querySelector('.submit');
-const inputContainer = document.getElementById('search');
-var childDiv =document.querySelector('.childContainer');
-var data = [];
-var filteredData = [];
-var term;
-var total = 0;
-var displayed = 0;
+const search = document.getElementById('search');
+let resultNum = document.querySelector('.resultNum');
+let displayed = 0;
+let data = [];
+let filteredData = [];
+var loadBtn;
 
-// Fetching the Data through API
 
-async function fetchData() {
-    const response = await fetch(url);
-    data = await response.json();
-    displayDataOnHome(data);
-
+//---Fecthes the data through the API_KEY---//
+async function fetchData(key) {
+    data = await fetch(key);
+    data = await data.json();
+    console.log(data);
+    displayData(data);
 }
+fetchData(API_KEY);
 
-//Diaplays Characters before search
-//Displays Characters in order (Ascending Order)
 
-function displayDataOnHome(arr) {
-    for (let i = displayed ; i < displayed + 10; i++) {
-        
-        if (typeof arr[i] === 'undefined') {
-            document.querySelector('.loadBtn').remove();
+//---Displays the Data ---//
+
+function displayData(arr) {
+    for(let i = displayed; i < displayed + 10; i++) {
+
+        if(arr[i] == undefined){
+            
         }
 
-        else {
+        else{
             var div = document.createElement('div');
             div.setAttribute('class', 'characterCard');
-            document.querySelector('.childContainer').appendChild(div);
+            childDiv.appendChild(div);
 
-            var img = document.createElement('img');
+            let img = document.createElement('img');
             img.src = arr[i].image;
-            img.setAttribute('alt', arr[i].name + "'s image");
+            img.setAttribute('alt', arr[i].name + "'s Image");
             div.appendChild(img);
+            
         }
-
     }
-
-    displayed += 10;
-
-    var loadBtn = `<button class='loadBtn'>
-            Load More
-        </button>`;
-    document.querySelector('.mainContainer').innerHTML += loadBtn;
-
-    document.querySelector('.loadBtn').addEventListener('click', ()=> {
-        document.querySelector('.loadBtn').remove();
-        displayDataOnHome(arr);
-    })
     
-}
-
-// Search Functionality
-// Returns all characters with search term containing in their Names...
-
-searchBtn.addEventListener('click', () => {
-    document.querySelector('.childContainer').innerHTML = '';
-    if (document.querySelector('.loadBtn') != null) {
-        document.querySelector('.loadBtn').remove();
-    }
-
-    if (inputContainer.value == '') {
+    //--Displays the 'Load More' button depending if the data is displayed completely or not---//
+    
+    if (arr.length === childDiv.getElementsByTagName('div').length) {
         
     }
 
     else {
-        total = 0;
-        returnFilteredData();
+        loadBtn = document.createElement('button');
+        loadBtn.innerHTML = 'Load More';
+        mainDiv.appendChild(loadBtn);
+        displayed += 10;
+
+        loadBtn.addEventListener('click', ()=> {
+            loadBtn.remove();
+            displayData(arr);
+            
+    })
     }
-});
-
-
-function returnFilteredData() {
-    term = inputContainer.value;
-    term = term.toLowerCase()
-    filteredData.forEach(()=>{
-        if (document.querySelector('.characterCard') != null) {
-            document.querySelector('.characterCard').remove();
-        }
-    })
-    
-    data.forEach((person) => {
-        
-        if (person.name.toLowerCase().includes(term)) {
-            filteredData.push(person);
-            total += 1;
-
-            document.querySelector('.resultNum').innerHTML = 'Results: ' + total;
-        }
-
-        else{
-            document.querySelector('.resultNum').innerHTML = 'Results: ' + total;
-        }
-    })
-
-    //Displays the search results with load more feature!
-
-    displayed = 0;
-    displayDataOnHome(filteredData);
 
 }
-//Fetches the data from API
-fetchData();
+
+searchBtn.addEventListener('click', ()=> {
+    if (search.value == '') {
+        
+    }
+    else {
+        filteredData = [];
+        childDiv.innerHTML = '';
+        if (loadBtn !== undefined) {
+            loadBtn.remove();
+        }
+        data.forEach((person)=> {
+            if (person.name.toLowerCase().includes(search.value.toLowerCase())) {
+                filteredData.push(person);
+               
+            }
+            
+        })
+        displayed = 0;
+        displayData(filteredData);
+        resultNum.innerHTML = 'Results: '+ filteredData.length;
+    }
+})
