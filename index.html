@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="style.css">
 </head> 
 <body>
+    <header><a><img src="images/hp-logo.png" alt="logo" srcset=""></a></header>
+
+
+    <div class="modal">
+        <div class="modalHeader">
+            <div class="title">Character Details</div>
+            <button class="closeBtn">&times;</button>
+        </div>
+
+        <div class="modalBody">
+
+        </div>
+    </div>
+
 
     <div class="searchContainer">
         <input type="text" id="search" autocomplete="off" placeholder="Search a Character...">
@@ -19,11 +33,13 @@
     </div>
 
     <div class="mainContainer">
-        <span class = 'resultNum'>Results: </span>
+        <span class="resultNum"></span>
         <div class="childContainer">
             
         </div>
     </div>
+
+    <div id="overlay"></div>
 
     <script src="script.js"></script>
 </body>
