@@ -3,19 +3,33 @@
     --secondaryColor: #ffa742;
     --font: 'Poppins';
 }
+html {
+    overflow-x: hidden;
+}
 
 body {
     background-color: var(--primaryColor);
-    overflow-x: hidden;
+    
     width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+
+header img {
+    width: 20rem;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+
 }
 
 .searchContainer {
     display: flex;
-    margin: auto;
     width: 65vw;
     height: 8vh;
-    transform: translate(0, 25vh);
+    transform: translate(-50%, 40vh);
+    position: absolute;
+    left: 50%;
 }
 
 #search {
@@ -47,7 +61,7 @@ body {
     flex-direction: column;
     width: 65vw;
     margin: auto;
-    transform: translate(0, 35vh);
+    transform: translate(0, 50vh);
     padding-bottom: 100px;
     
 }
@@ -69,12 +83,14 @@ body {
 
 .characterCard {
     width: 250px;
-    height: 400px;
+    height: 500px;
     margin: auto;
     border-radius: 10px;
     padding: 20px;
     box-shadow:  5px 5px 75px #b5b5b5,
              -5px -5px 75px #ffffff;
+    display: flex;
+    flex-direction: column;
 }
 
 .characterCard img {
@@ -83,7 +99,33 @@ body {
     margin-left: 7.5%;
 }
 
-.mainContainer button {
+.characterCard h2 {
+    font-size: 24px;
+    font-family: var(--font);
+    font-weight: 500;
+}
+
+.characterCard h3 {
+    color: #6D6D6D;
+    font-family: var(--font);
+    font-weight: 200;
+    font-style: italic;
+    margin-top: -20px;
+}
+
+.characterCard button {
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+    font-family: var(--font);
+    border: none;
+    font-size: 18px;
+    height: 4vh;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 00.3s;
+}
+
+.mainContainer .loadBtn {
     background-color: var(--secondaryColor);
     color: var(--primaryColor);
     font-size: 32px;
@@ -93,6 +135,7 @@ body {
     transition: 0.3s;
     transform: translate(50%, 40px);
     width: 50%;
+    border-radius: 4px;
 }
 
 .mainContainer button:hover {
@@ -101,4 +144,60 @@ body {
 
 .mainContainer button:active {
     background-color: #FF9C2B;
+}
+
+
+
+.modal {
+    border: 1px solid black;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0);
+    transition: 200ms ease-in-out;
+    width: 50vw;
+    height: 70vh;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.modal .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    border-bottom: 1px solid black;
+    padding: 10px 15px;
+    font-family: var(--font);
+    background-color: var(--secondaryColor);
+    color: white;
+    font-size: 24px;
+}
+
+.modal .modalBody {
+    background-color: var(--primaryColor);
+    
+    height: 100%;
+}
+
+.modal .modalHeader .closeBtn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 200ms ease-in-out;
+    pointer-events: none;
 }
