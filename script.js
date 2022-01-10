@@ -30,6 +30,8 @@ function displayData(arr) {
         }
 
         else{
+
+            //---Creates the Character Card---//
             var div = document.createElement('div');
             div.setAttribute('class', 'characterCard');
             childDiv.appendChild(div);
@@ -38,7 +40,46 @@ function displayData(arr) {
             img.src = arr[i].image;
             img.setAttribute('alt', arr[i].name + "'s Image");
             div.appendChild(img);
+
+            let name = document.createElement('h2');
+            name.innerText = arr[i].name;
+            div.appendChild(name);
+
+            let actName = document.createElement('h3');
+            actName.innerText = arr[i].actor;
+            div.appendChild(actName);
+            if (actName.innerText == '') {
+                actName.innerText = 'None';
+            }
+
+            let detailBtn = document.createElement('button');
+            detailBtn.setAttribute('class', 'detailsBtn')
+            detailBtn.innerText = 'Details'
+            div.appendChild(detailBtn);
+
+            //---Opens the Modal---//
             
+            detailBtn.addEventListener('click', (e)=> {
+                document.querySelector('.modal').style.transform = 'translate(-50%, 0) scale(1)';
+                document.getElementById('overlay').style.opacity = '1';
+                document.getElementById('overlay').style.pointerEvents = 'all';
+
+                //---Closes the Modal when clicked on the darker area---// 
+                document.getElementById('overlay').addEventListener('click', ()=> {
+                    document.querySelector('.modal').style.transform = 'translate(-50%, 0) scale(0)';
+                    document.getElementById('overlay').style.opacity = '0';
+                    document.getElementById('overlay').style.pointerEvents = 'none'
+                })
+                
+            });
+            
+            //---Closes the Modal when 'x' btn is pressed---//
+            let closeBtn = document.querySelector('.closeBtn');
+            closeBtn.addEventListener('click', () => {
+                document.querySelector('.modal').style.transform = 'translate(-50%, 0) scale(0)';
+                document.getElementById('overlay').style.opacity = '0';
+                document.getElementById('overlay').style.pointerEvents = 'none'
+            })
         }
     }
     
@@ -51,6 +92,7 @@ function displayData(arr) {
     else {
         loadBtn = document.createElement('button');
         loadBtn.innerHTML = 'Load More';
+        loadBtn.setAttribute('class', 'loadBtn')
         mainDiv.appendChild(loadBtn);
         displayed += 10;
 
